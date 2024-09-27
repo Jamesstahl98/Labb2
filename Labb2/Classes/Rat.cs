@@ -6,9 +6,10 @@ public class Rat : Enemy
     private enum dir { left, up, right, down};
     Array dirValues = Enum.GetValues(typeof(dir));
 
-    public Rat(Position pos, char c, ConsoleColor color) : base(pos, c, color)
+    public Rat(Position pos, char c, ConsoleColor color) 
+        : base(pos, c, color)
     {
-        Name = "Rat";
+        Name = "rat";
         HP = 10;
         AttackDice = new Dice(1, 6, 3);
         DefenseDice = new Dice(1, 6, 1);
@@ -17,7 +18,7 @@ public class Rat : Enemy
     public override void Update()
     {
         Console.SetCursorPosition(PosX, PosY);
-        Console.Write(" ");
+        Console.Write("");
 
         dir randomDir = (dir)dirValues.GetValue(rand.Next(dirValues.Length));
         switch(randomDir)

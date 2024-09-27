@@ -1,4 +1,6 @@
-﻿public abstract class LevelElement
+﻿using System.Numerics;
+
+public abstract class LevelElement
 {
     public int PosX { get; set; }
     public int PosY { get; set; }
@@ -18,4 +20,6 @@
         Console.SetCursorPosition(PosX, PosY);
         Console.Write(Character);
     }
+
+    public abstract void ElementContact(Character element);
 }

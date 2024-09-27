@@ -1,30 +1,48 @@
-﻿public class Player : LevelElement
+﻿public class Player : Character
 {
-    public string Name { get; set; }
-    public int Health { get; set; }
-    public Dice AttackDice { get; set; }
-    public Dice DefenseDice { get; set; }
-
     public Player(Position pos, char c, ConsoleColor color) :base(pos, c, color)
     {
-        Health = 100;
+        HP = 100;
         AttackDice = new Dice(2, 6, 2);
         DefenseDice = new Dice(2, 6, 0);
     }
 
     public void Update(bool horizontal, int value)
     {
+        bool canMove = true;
         Console.SetCursorPosition(PosX, PosY);
         Console.Write(" ");
 
         if (horizontal)
         {
-            PosX += value;
+            for (int i = 0; i < LevelData.Elements.Count; i++)
+            {
+                if (LevelData.Elements[i].PosX == PosX + value && LevelData.Elements[i].PosY == PosY)
+                {
+                    LevelData.Elements[i].ElementContact(this);
+                    canMove = false;
+                }
+            }
+            if(canMove)
+            {
+                PosX += value;
+            }
         }
 
         else
         {
-            PosY += value;
+            for (int i = 0; i < LevelData.Elements.Count; i++)
+            {
+                if (LevelData.Elements[i].PosX == PosX && LevelData.Elements[i].PosY == PosY + value)
+                {
+                    LevelData.Elements[i].ElementContact(this);
+                    canMove = false;
+                }
+            }
+            if(canMove)
+            {
+                PosY += value;
+            }
         }
         Draw();
     }

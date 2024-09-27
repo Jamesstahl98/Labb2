@@ -7,8 +7,9 @@ public static class LevelData
 
     public static List<LevelElement> Elements { get { return _elements; } }
 
-    public static void Load(string fileName)
+    public static Player Load(string fileName)
     {
+        Player player = null;
         using (StreamReader reader = new StreamReader(fileName))
         {
             string[] lines = File.ReadAllLines(fileName);
@@ -24,7 +25,7 @@ public static class LevelData
                     }
                     else if(charUnicode == 64)
                     {
-                        Player player = new Player(new Position(j, i), '@', ConsoleColor.Gray);
+                        player = new Player(new Position(j, i), '@', ConsoleColor.Gray);
                         _elements.Add(player);
                     }
                     else if (charUnicode == 114)
@@ -38,12 +39,12 @@ public static class LevelData
                         _elements.Add(snake);
                     }
                 }
-                Console.WriteLine();
             }
         }
         foreach (LevelElement element in Elements)
         {
             element.Draw();
         }
+        return player;
     }
 }
