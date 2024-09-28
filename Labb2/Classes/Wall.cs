@@ -6,4 +6,11 @@
     {
         
     }
+
+    public override void OutOfRange()
+    {
+        Console.ForegroundColor = Color + 1;
+        Console.SetCursorPosition(PosX, PosY);
+        Console.Write(Character);
+    }
 }

@@ -49,4 +49,10 @@ public class Character : LevelElement
         Console.SetCursorPosition(PosX, PosY);
         Console.Write(" ");
     }
+
+    public override void OutOfRange()
+    {
+        Console.SetCursorPosition(PosX, PosY);
+        Console.Write(" ");
+    }
 }

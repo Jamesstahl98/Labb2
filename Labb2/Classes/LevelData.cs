@@ -43,7 +43,7 @@ public static class LevelData
         }
         foreach (LevelElement element in Elements)
         {
-            element.Draw();
+            //element.Draw();
         }
         return player;
     }

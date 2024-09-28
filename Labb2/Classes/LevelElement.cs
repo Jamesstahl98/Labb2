@@ -6,6 +6,7 @@ public abstract class LevelElement
     public int PosY { get; set; }
     public char Character { get; set; }
     public ConsoleColor Color { get; set; }
+    public bool IsDiscovered { get; set; }
 
     public LevelElement(Position pos, char c, ConsoleColor color)
     {
@@ -21,6 +22,8 @@ public abstract class LevelElement
         Console.ForegroundColor = Color;
         Console.Write(Character);
     }
+
+    public abstract void OutOfRange();
 
     public abstract void ElementContact(Character element);
 }
