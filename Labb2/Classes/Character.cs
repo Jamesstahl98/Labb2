@@ -46,6 +46,7 @@ public class Character : LevelElement
     public void Death()
     {
         LevelData.Elements.Remove(this);
-        Debug.WriteLine("Death");
+        Console.SetCursorPosition(PosX, PosY);
+        Console.Write(" ");
     }
 }

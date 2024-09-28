@@ -18,6 +18,7 @@ public abstract class LevelElement
     public void Draw()
     {
         Console.SetCursorPosition(PosX, PosY);
+        Console.ForegroundColor = Color;
         Console.Write(Character);
     }
 
