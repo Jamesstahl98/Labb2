@@ -61,4 +61,20 @@ public class Player : Character
             }
         }
     }
+
+    public override void ElementContact(Character element)
+    {
+        int damage = DamageRoll(element.AttackDice, DefenseDice);
+
+        if (damage > 0)
+        {
+            ChangeHP(-damage);
+        }
+
+        damage = DamageRoll(DefenseDice, element.DefenseDice);
+        if (damage > 0)
+        {
+            element.ChangeHP(-damage);
+        }
+    }
 }
