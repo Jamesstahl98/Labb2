@@ -1,4 +1,5 @@
-﻿Player player = LevelData.Load("Level1.txt");
+﻿Console.CursorVisible = false;
+Player player = LevelData.Load("Level1.txt");
 
 ConsoleKeyInfo cki;
 do
