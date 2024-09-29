@@ -41,6 +41,12 @@ public static class LevelData
                 }
             }
         }
+
+        foreach(LevelElement element in _elements)
+        {
+            element.PlayerObject = player;
+        }
+
         return player;
     }
 }

@@ -20,7 +20,7 @@ public class Player : Character
             PosY = newPos.Y;
         }
 
-        RevealLevelElements();
+        RevealWalls();
 
         Draw();
 
@@ -30,22 +30,25 @@ public class Player : Character
         }
     }
 
-    private void RevealLevelElements()
+    private void RevealWalls()
     {
         for (int i = 0; i < LevelData.Elements.Count; i++)
         {
-            int posXDiff = Math.Abs(PosX - LevelData.Elements[i].PosX);
-            int posYDiff = Math.Abs(PosY - LevelData.Elements[i].PosY);
-            if ((posXDiff * posXDiff) + (posYDiff * posYDiff) < 25)
+            if(LevelData.Elements[i] is Wall)
             {
-                LevelData.Elements[i].IsDiscovered = true;
-                LevelData.Elements[i].Draw();
-            }
-            else
-            {
-                if (LevelData.Elements[i].IsDiscovered == true)
+                int posXDiff = Math.Abs(PosX - LevelData.Elements[i].PosX);
+                int posYDiff = Math.Abs(PosY - LevelData.Elements[i].PosY);
+                if ((posXDiff * posXDiff) + (posYDiff * posYDiff) < 25)
                 {
-                    LevelData.Elements[i].OutOfRange();
+                    LevelData.Elements[i].IsDiscovered = true;
+                    LevelData.Elements[i].Draw();
+                }
+                else
+                {
+                    if (LevelData.Elements[i].IsDiscovered == true)
+                    {
+                        LevelData.Elements[i].OutOfRange();
+                    }
                 }
             }
         }

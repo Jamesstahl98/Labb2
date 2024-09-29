@@ -38,8 +38,7 @@ public class Character : LevelElement
 
     public override void OutOfRange()
     {
-        Console.SetCursorPosition(PosX, PosY);
-        Console.Write(" ");
+
     }
 
     protected bool IsFreeSpace(Position pos)

@@ -12,34 +12,31 @@ public class Snake : Enemy
 
     public override void Update()
     {
-        foreach(LevelElement element in LevelData.Elements)
+        int posXDiff = Math.Abs(PosX - PlayerObject.PosX);
+        int posYDiff = Math.Abs(PosY - PlayerObject.PosY);
+
+        if ((posXDiff * posXDiff) + (posYDiff * posYDiff) < 3)
         {
-            if(element is Player)
+            var newPos = new Position(PosX, PosY);
+
+            if (posXDiff>posYDiff)
             {
-                int posXDiff = Math.Abs(PosX - element.PosX);
-                int posYDiff = Math.Abs(PosY - element.PosY);
-
-                if ((posXDiff * posXDiff) + (posYDiff * posYDiff) < 4)
-                {
-                    var newPos = new Position(PosX, PosY);
-
-                    if (posXDiff>posYDiff)
-                    {
-                        newPos.X += Math.Sign(PosX - element.PosX);
-                    }
-                    else
-                    {
-                        newPos.Y += Math.Sign(PosY - element.PosY);
-                    }
-                    if (IsFreeSpace(newPos))
-                    {
-                        Console.SetCursorPosition(PosX, PosY);
-                        Console.Write(" ");
-                        PosX = newPos.X;
-                        PosY = newPos.Y;
-                    }
-                    Draw();
-                }
+                newPos.X += Math.Sign(PosX - PlayerObject.PosX);
+            }
+            else
+            {
+                newPos.Y += Math.Sign(PosY - PlayerObject.PosY);
+            }
+            if (IsFreeSpace(newPos))
+            {
+                Console.SetCursorPosition(PosX, PosY);
+                Console.Write(" ");
+                PosX = newPos.X;
+                PosY = newPos.Y;
+            }
+            if(CheckIfPlayerNearby())
+            {
+                Draw();
             }
         }
     }

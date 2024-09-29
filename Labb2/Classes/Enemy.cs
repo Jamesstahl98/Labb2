@@ -6,7 +6,7 @@
 
     public override void ElementContact(Character element)
     {
-        if (element is not Player)
+        if (element != PlayerObject)
         {
             return;
         }

@@ -2,6 +2,7 @@
 
 public abstract class LevelElement
 {
+    public Player PlayerObject { get; set; }
     public int PosX { get; set; }
     public int PosY { get; set; }
     public char Character { get; set; }
@@ -21,6 +22,20 @@ public abstract class LevelElement
         Console.SetCursorPosition(PosX, PosY);
         Console.ForegroundColor = Color;
         Console.Write(Character);
+    }
+
+    public bool CheckIfPlayerNearby()
+    {
+        int posXDiff = Math.Abs(PosX - PlayerObject.PosX);
+        int posYDiff = Math.Abs(PosY - PlayerObject.PosY);
+        if ((posXDiff * posXDiff) + (posYDiff * posYDiff) < 25)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public abstract void OutOfRange();
