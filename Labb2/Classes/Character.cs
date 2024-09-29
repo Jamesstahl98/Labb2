@@ -39,11 +39,11 @@ public class Character : LevelElement
         HP += amount;
         if (HP <= 0)
         {
-            Death();
+            Die();
         }
     }
 
-    public void Death()
+    public void Die()
     {
         LevelData.Elements.Remove(this);
         Console.SetCursorPosition(PosX, PosY);
@@ -54,5 +54,18 @@ public class Character : LevelElement
     {
         Console.SetCursorPosition(PosX, PosY);
         Console.Write(" ");
+    }
+
+    protected bool IsFreeSpace(Position pos)
+    {
+        for (int i = 0; i < LevelData.Elements.Count; i++)
+        {
+            if (LevelData.Elements[i].PosX == pos.X && LevelData.Elements[i].PosY == pos.Y)
+            {
+                LevelData.Elements[i].ElementContact(this);
+                return false;
+            }
+        }
+        return true;
     }
 }

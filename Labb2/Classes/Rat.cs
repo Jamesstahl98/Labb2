@@ -18,7 +18,7 @@ public class Rat : Enemy
     public override void Update()
     {
         Console.SetCursorPosition(PosX, PosY);
-        Console.Write("");
+        Console.Write(" ");
 
         dir randomDir = (dir)dirValues.GetValue(rand.Next(dirValues.Length));
         switch(randomDir)

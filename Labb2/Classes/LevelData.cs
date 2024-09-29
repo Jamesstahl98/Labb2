@@ -41,10 +41,6 @@ public static class LevelData
                 }
             }
         }
-        foreach (LevelElement element in Elements)
-        {
-            //element.Draw();
-        }
         return player;
     }
 }
