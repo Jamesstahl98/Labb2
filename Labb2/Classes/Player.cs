@@ -9,25 +9,15 @@ public class Player : Character
         DefenseDice = new Dice(2, 6, 0);
     }
 
-    public void Update(bool horizontal, int value)
+    public void Update(Position newPos)
     {
         Console.SetCursorPosition(PosX, PosY);
         Console.Write(" ");
 
-        if (horizontal)
+        if(IsFreeSpace(newPos))
         {
-            if(IsFreeSpace(new Position(PosX + value, PosY)))
-            {
-                PosX += value;
-            }
-        }
-
-        else
-        {
-            if (IsFreeSpace(new Position(PosX, PosY+ value)))
-            {
-                PosY += value;
-            }
+            PosX = newPos.X;
+            PosY = newPos.Y;
         }
 
         RevealLevelElements();
@@ -38,7 +28,6 @@ public class Player : Character
         {
             (element as Enemy)?.Update();
         }
-
     }
 
     private void RevealLevelElements()
