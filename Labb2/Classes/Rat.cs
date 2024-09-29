@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 public class Rat : Enemy
 {
@@ -17,25 +18,36 @@ public class Rat : Enemy
 
     public override void Update()
     {
-        Console.SetCursorPosition(PosX, PosY);
-        Console.Write(" ");
+        var newPos = new Position(PosX, PosY);
 
         dir randomDir = (dir)dirValues.GetValue(rand.Next(dirValues.Length));
         switch(randomDir)
         {
             case dir.left:
-                PosX -= 1;
+                newPos.X -= 1;
                 break;
             case dir.up:
-                PosY -= 1;
+                newPos.Y -= 1;
                 break;
             case dir.right:
-                PosX += 1;
+                newPos.X += 1;
                 break;
             case dir.down:
-                PosY += 1;
+                newPos.Y += 1;
                 break;
         }
-        Draw();
+        Debug.WriteLine(newPos.X + " " + newPos.Y);
+        if(IsFreeSpace(newPos))
+        {
+            Console.SetCursorPosition(PosX, PosY);
+            Console.Write(" ");
+            PosX = newPos.X;
+            PosY = newPos.Y;
+            Draw();
+        }
+        else
+        {
+
+        }
     }
 }

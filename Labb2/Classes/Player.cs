@@ -34,7 +34,7 @@ public class Player : Character
 
         Draw();
 
-        foreach(LevelElement element in LevelData.Elements)
+        foreach(LevelElement element in LevelData.Elements.ToList())
         {
             (element as Enemy)?.Update();
         }
