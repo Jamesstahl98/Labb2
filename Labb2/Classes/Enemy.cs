@@ -12,6 +12,9 @@ public abstract class Enemy : Character
         {
             return;
         }
+
+        Console.ForegroundColor = ConsoleColor.Gray;
+
         int damage = DamageRoll(element.AttackDice, DefenseDice);
         if (damage > 0)
         {

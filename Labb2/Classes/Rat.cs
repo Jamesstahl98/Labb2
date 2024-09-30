@@ -37,10 +37,11 @@ public class Rat : Enemy
                 break;
         }
 
-        if(IsFreeSpace(newPos))
+        Console.SetCursorPosition(PosX, PosY);
+        Console.Write(" ");
+
+        if (IsFreeSpace(newPos))
         {
-            Console.SetCursorPosition(PosX, PosY);
-            Console.Write(" ");
             PosX = newPos.X;
             PosY = newPos.Y;
         }

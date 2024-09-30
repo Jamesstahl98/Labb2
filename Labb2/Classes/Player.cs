@@ -57,8 +57,9 @@ public class Player : Character
 
     public override void ElementContact(Character element)
     {
-        int damage = DamageRoll(element.AttackDice, DefenseDice);
+        Console.ForegroundColor = ConsoleColor.Gray;
 
+        int damage = DamageRoll(element.AttackDice, DefenseDice);
         if (damage > 0)
         {
             ChangeHP(-damage);
