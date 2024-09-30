@@ -67,6 +67,7 @@ public class Player : Character
         }
         else
         {
+            Console.SetCursorPosition(0, 1);
             Console.WriteLine($"{Name} took 0 damage, leaving them with {HP} health");
         }
 
@@ -79,6 +80,7 @@ public class Player : Character
         }
         else
         {
+            Console.SetCursorPosition(0, 2);
             Console.WriteLine($"{element.Name} took 0 damage, leaving them with {element.HP} health");
         }
     }
