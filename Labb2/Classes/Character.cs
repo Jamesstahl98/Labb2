@@ -31,9 +31,10 @@ public class Character : LevelElement
 
     public void Die()
     {
-        LevelData.Elements.Remove(this);
+        Debug.WriteLine("Die");
         Console.SetCursorPosition(PosX, PosY);
         Console.Write(" ");
+        LevelData.Elements.Remove(this);
     }
 
     public override void OutOfRange()
@@ -45,6 +46,10 @@ public class Character : LevelElement
     {
         for (int i = 0; i < LevelData.Elements.Count; i++)
         {
+            if (LevelData.Elements[i] == this)
+            {
+                continue;
+            }
             if (LevelData.Elements[i].PosX == pos.X && LevelData.Elements[i].PosY == pos.Y)
             {
                 LevelData.Elements[i].ElementContact(this);

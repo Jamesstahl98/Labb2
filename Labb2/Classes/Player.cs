@@ -4,6 +4,7 @@ public class Player : Character
 {
     public Player(Position pos, char c, ConsoleColor color) :base(pos, c, color)
     {
+        Name = "Player";
         HP = 100;
         AttackDice = new Dice(2, 6, 2);
         DefenseDice = new Dice(2, 6, 0);
@@ -61,12 +62,24 @@ public class Player : Character
         if (damage > 0)
         {
             ChangeHP(-damage);
+            Console.SetCursorPosition(0, 1);
+            Console.WriteLine($"{Name} took {damage} damage, leaving them with {HP} health");
+        }
+        else
+        {
+            Console.WriteLine($"{Name} took 0 damage, leaving them with {HP} health");
         }
 
-        damage = DamageRoll(DefenseDice, element.DefenseDice);
+        damage = DamageRoll(AttackDice, element.DefenseDice);
         if (damage > 0)
         {
             element.ChangeHP(-damage);
+            Console.SetCursorPosition(0, 2);
+            Console.WriteLine($"{element.Name} took {damage} damage, leaving them with {element.HP} health");
+        }
+        else
+        {
+            Console.WriteLine($"{element.Name} took 0 damage, leaving them with {element.HP} health");
         }
     }
 }

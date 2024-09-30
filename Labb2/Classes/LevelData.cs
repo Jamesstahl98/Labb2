@@ -20,22 +20,22 @@ public static class LevelData
                     int charUnicode = reader.Read();
                     if (charUnicode == 35)
                     {
-                        Wall wall = new Wall(new Position(j, i), '#', ConsoleColor.Gray);
+                        Wall wall = new Wall(new Position(j, i + 3), '#', ConsoleColor.Gray);
                         _elements.Add(wall);
                     }
                     else if(charUnicode == 64)
                     {
-                        player = new Player(new Position(j, i), '@', ConsoleColor.Gray);
+                        player = new Player(new Position(j, i + 3), '@', ConsoleColor.Gray);
                         _elements.Add(player);
                     }
                     else if (charUnicode == 114)
                     {
-                        Rat rat = new Rat(new Position(j, i), 'r', ConsoleColor.Red);
+                        Rat rat = new Rat(new Position(j, i + 3), 'r', ConsoleColor.Red);
                         _elements.Add(rat);
                     }
                     else if (charUnicode == 115)
                     {
-                        Snake snake = new Snake(new Position(j, i), 's', ConsoleColor.Green);
+                        Snake snake = new Snake(new Position(j, i + 3), 's', ConsoleColor.Green);
                         _elements.Add(snake);
                     }
                 }
