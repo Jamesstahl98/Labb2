@@ -37,7 +37,7 @@ public class Snake : Enemy
             PosX = newPos.X;
             PosY = newPos.Y;
         }
-        if (CheckIfPlayerNearby())
+        if (IsPlayerNearby())
         {
             Draw();
         }

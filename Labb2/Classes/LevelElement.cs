@@ -24,7 +24,7 @@ public abstract class LevelElement
         Console.Write(Character);
     }
 
-    public bool CheckIfPlayerNearby()
+    public bool IsPlayerNearby()
     {
         int posXDiff = Math.Abs(PosX - PlayerObject.PosX);
         int posYDiff = Math.Abs(PosY - PlayerObject.PosY);
