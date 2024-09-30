@@ -1,4 +1,5 @@
-﻿using System.Xml.Linq;
+﻿using System.Diagnostics;
+using System.Xml.Linq;
 
 public class Snake : Enemy
 {
@@ -15,9 +16,10 @@ public class Snake : Enemy
         int posXDiff = Math.Abs(PosX - PlayerObject.PosX);
         int posYDiff = Math.Abs(PosY - PlayerObject.PosY);
 
+        var newPos = new Position(PosX, PosY);
+
         if ((posXDiff * posXDiff) + (posYDiff * posYDiff) < 3)
         {
-            var newPos = new Position(PosX, PosY);
 
             if (posXDiff>posYDiff)
             {
@@ -27,17 +29,23 @@ public class Snake : Enemy
             {
                 newPos.Y += Math.Sign(PosY - PlayerObject.PosY);
             }
-            if (IsFreeSpace(newPos))
-            {
-                Console.SetCursorPosition(PosX, PosY);
-                Console.Write(" ");
-                PosX = newPos.X;
-                PosY = newPos.Y;
-            }
-            if(CheckIfPlayerNearby())
-            {
-                Draw();
-            }
+        }
+        if (IsFreeSpace(newPos))
+        {
+            Console.SetCursorPosition(PosX, PosY);
+            Console.Write(" ");
+            PosX = newPos.X;
+            PosY = newPos.Y;
+        }
+        if (CheckIfPlayerNearby())
+        {
+            Debug.WriteLine("true");
+            Draw();
+        }
+        else
+        {
+            Console.SetCursorPosition(PosX, PosY);
+            Console.Write(" ");
         }
     }
 }
