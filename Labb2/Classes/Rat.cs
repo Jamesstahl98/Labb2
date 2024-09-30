@@ -44,7 +44,7 @@ public class Rat : Enemy
             PosX = newPos.X;
             PosY = newPos.Y;
         }
-        if (PlayerIsNearby())
+        if (CheckIfPlayerNearby())
         {
             Draw();
         }
