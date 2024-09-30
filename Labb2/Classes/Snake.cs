@@ -39,7 +39,6 @@ public class Snake : Enemy
         }
         if (CheckIfPlayerNearby())
         {
-            Debug.WriteLine("true");
             Draw();
         }
         else

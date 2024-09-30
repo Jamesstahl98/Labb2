@@ -47,6 +47,8 @@ public static class LevelData
             element.PlayerObject = player;
         }
 
+        player.Update(new Position(player.PosX, player.PosY));
+
         return player;
     }
 }
