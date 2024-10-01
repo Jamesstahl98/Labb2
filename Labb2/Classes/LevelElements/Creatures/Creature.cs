@@ -15,6 +15,11 @@ public abstract class Creature : LevelElement
         Console.SetCursorPosition(0, 1);
         DamageRoll(element.AttackDice, DefenseDice, element, this);
 
+        if(HP <= 0)
+        {
+            return;
+        }
+
         Console.SetCursorPosition(0, 2);
         DamageRoll(AttackDice, element.DefenseDice, this, element);
     }
