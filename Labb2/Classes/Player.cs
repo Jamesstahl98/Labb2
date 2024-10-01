@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-public class Player : Character
+public class Player : Creature
 {
     public Player(Position pos, char c, ConsoleColor color) :base(pos, c, color)
     {

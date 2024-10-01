@@ -1,12 +1,12 @@
 ﻿using System.Diagnostics;
 
-public abstract class Enemy : Character
+public abstract class Enemy : Creature
 {
     public Enemy( Position pos, char c, ConsoleColor color) : base(pos, c, color) { }
 
     public abstract void Update();
 
-    public override void ElementContact(Character element)
+    public override void ElementContact(Creature element)
     {
         if (element != PlayerObject)
         {

@@ -2,7 +2,7 @@
 {
     public Wall(Position pos, char c, ConsoleColor color) : base(pos, c, color) { }
 
-    public override void ElementContact(Character element) { }
+    public override void ElementContact(Creature element) { }
 
     public override void OutOfRange()
     {

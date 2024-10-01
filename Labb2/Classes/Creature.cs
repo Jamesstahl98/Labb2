@@ -1,16 +1,16 @@
 ﻿using System.Diagnostics;
 using System.Xml.Linq;
 
-public class Character : LevelElement
+public abstract class Creature : LevelElement
 {
     public string Name { get; set; }
     public int HP { get; set; }
     public Dice AttackDice { get; set; }
     public Dice DefenseDice { get; set; }
 
-    public Character(Position pos, char c, ConsoleColor color) : base(pos, c, color) { }
+    public Creature(Position pos, char c, ConsoleColor color) : base(pos, c, color) { }
 
-    public override void ElementContact(Character element)
+    public override void ElementContact(Creature element)
     {
         Console.SetCursorPosition(0, 1);
         DamageRoll(element.AttackDice, DefenseDice, element, this);
@@ -19,7 +19,7 @@ public class Character : LevelElement
         DamageRoll(AttackDice, element.DefenseDice, this, element);
     }
 
-    public void DamageRoll(Dice attackDice, Dice defenseDice, Character attacker, Character defender)
+    public void DamageRoll(Dice attackDice, Dice defenseDice, Creature attacker, Creature defender)
     {
         (int, int) cursorPos = Console.GetCursorPosition();
         int damageRoll = attackDice.Throw();
