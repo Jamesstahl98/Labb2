@@ -20,7 +20,7 @@ public static class LevelData
                     int charUnicode = reader.Read();
                     if (charUnicode == 33)
                     {
-                        Potion potion = new Potion(new Position(j, i + 3), '!', ConsoleColor.Cyan);
+                        Potion potion = new Potion(new Position(j, i + 3), '!', ConsoleColor.DarkGreen);
                         _elements.Add(potion);
                     }
                     if (charUnicode == 35)
@@ -48,6 +48,11 @@ public static class LevelData
                     {
                         Snake snake = new Snake(new Position(j, i + 3), 's', ConsoleColor.Green);
                         _elements.Add(snake);
+                    }
+                    else if (charUnicode == 116)
+                    {
+                        Troll troll = new Troll(new Position(j, i + 3), 't', ConsoleColor.DarkCyan);
+                        _elements.Add(troll);
                     }
                 }
             }

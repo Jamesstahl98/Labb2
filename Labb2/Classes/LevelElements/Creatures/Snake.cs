@@ -13,12 +13,18 @@ public class Snake : Enemy
 
     public override void Update()
     {
+        if(WasAttackedThisRound)
+        {
+            WasAttackedThisRound = false;
+            return;
+        }
+
         int posXDiff = Math.Abs(PosX - PlayerObject.PosX);
         int posYDiff = Math.Abs(PosY - PlayerObject.PosY);
 
         var newPos = new Position(PosX, PosY);
 
-        if ((posXDiff * posXDiff) + (posYDiff * posYDiff) < 3)
+        if ((posXDiff * posXDiff) + (posYDiff * posYDiff) < 9)
         {
 
             if (posXDiff>posYDiff)
@@ -40,11 +46,6 @@ public class Snake : Enemy
         if (IsPlayerNearby())
         {
             Draw();
-        }
-        else
-        {
-            Console.SetCursorPosition(PosX, PosY);
-            Console.Write(" ");
         }
     }
 }

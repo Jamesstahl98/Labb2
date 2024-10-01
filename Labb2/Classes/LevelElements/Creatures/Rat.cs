@@ -18,6 +18,12 @@ public class Rat : Enemy
 
     public override void Update()
     {
+        if (WasAttackedThisRound)
+        {
+            WasAttackedThisRound = false;
+            return;
+        }
+
         var newPos = new Position(PosX, PosY);
 
         dir randomDir = (dir)dirValues.GetValue(rand.Next(dirValues.Length));
