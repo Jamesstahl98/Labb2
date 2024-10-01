@@ -12,6 +12,9 @@ public abstract class Enemy : Character
         {
             return;
         }
-        base.ElementContact(element);
+        else
+        {
+            base.ElementContact(element);
+        }
     }
 }

@@ -13,17 +13,15 @@ public class Character : LevelElement
     public override void ElementContact(Character element)
     {
         Console.SetCursorPosition(0, 1);
-        int damage = DamageRoll(element.AttackDice, DefenseDice, element, this);
-        ChangeHP(-damage);
-        Console.Write($" {Name} has {HP} health left.");
+        DamageRoll(element.AttackDice, DefenseDice, element, this);
+
         Console.SetCursorPosition(0, 2);
-        damage = DamageRoll(AttackDice, element.DefenseDice, this, element);
-        element.ChangeHP(-damage);
-        Console.Write($" {element.Name} has {element.HP} health left.");
+        DamageRoll(AttackDice, element.DefenseDice, this, element);
     }
 
-    public int DamageRoll(Dice attackDice, Dice defenseDice, Character attacker, Character defender)
+    public void DamageRoll(Dice attackDice, Dice defenseDice, Character attacker, Character defender)
     {
+        (int, int) cursorPos = Console.GetCursorPosition();
         int damageRoll = attackDice.Throw();
         int defenseRoll = defenseDice.Throw();
         int damage = damageRoll - defenseRoll;
@@ -32,10 +30,19 @@ public class Character : LevelElement
         {
             damage = 0;
         }
-        Console.ForegroundColor = attacker.Color;
-        Console.Write($"{attacker.Name} (ATK: {attackDice} => {damageRoll}) attacked {defender.Name} (DEF: {defenseDice} => {defenseRoll}), dealing {damage} damage.");
+        defender.ChangeHP(-damage);
 
-        return damage;
+        Console.ForegroundColor = attacker.Color;
+        Console.SetCursorPosition(cursorPos.Item1, cursorPos.Item2);
+        Console.Write($"{attacker.Name} (ATK: {attackDice} => {damageRoll}) attacked {defender.Name} (DEF: {defenseDice} => {defenseRoll}), dealing {damage} damage. ");
+        if(defender.HP <= 0)
+        {
+            Console.Write("Instantly killing it");
+        }
+        else
+        {
+            Console.Write($"{defender} has {defender.HP} health left.");
+        }
     }
 
     public void ChangeHP(int amount)
