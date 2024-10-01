@@ -7,7 +7,7 @@ public class Player : Creature
         Name = "Player";
         HP = 100;
         AttackDice = new Dice(2, 6, 2);
-        DefenseDice = new Dice(2, 6, 0);
+        DefenceDice = new Dice(2, 6, 0);
     }
 
     public void Update(Position newPos)

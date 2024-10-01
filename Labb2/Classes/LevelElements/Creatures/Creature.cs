@@ -6,14 +6,14 @@ public abstract class Creature : LevelElement
     public string Name { get; set; }
     public int HP { get; set; }
     public Dice AttackDice { get; set; }
-    public Dice DefenseDice { get; set; }
+    public Dice DefenceDice { get; set; }
 
     public Creature(Position pos, char c, ConsoleColor color) : base(pos, c, color) { }
 
     public override void ElementContact(Creature element)
     {
         Console.SetCursorPosition(0, 1);
-        DamageRoll(element.AttackDice, DefenseDice, element, this);
+        DamageRoll(element.AttackDice, DefenceDice, element, this);
 
         if(HP <= 0)
         {
@@ -21,7 +21,7 @@ public abstract class Creature : LevelElement
         }
 
         Console.SetCursorPosition(0, 2);
-        DamageRoll(AttackDice, element.DefenseDice, this, element);
+        DamageRoll(AttackDice, element.DefenceDice, this, element);
     }
 
     public void DamageRoll(Dice attackDice, Dice defenseDice, Creature attacker, Creature defender)

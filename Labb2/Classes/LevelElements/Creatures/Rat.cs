@@ -13,7 +13,7 @@ public class Rat : Enemy
         Name = "rat";
         HP = 10;
         AttackDice = new Dice(1, 6, 3);
-        DefenseDice = new Dice(1, 6, 1);
+        DefenceDice = new Dice(1, 6, 1);
     }
 
     public override void Update()

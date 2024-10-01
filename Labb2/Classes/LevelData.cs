@@ -23,20 +23,29 @@ public static class LevelData
                         Potion potion = new Potion(new Position(j, i + 3), '!', ConsoleColor.DarkGreen);
                         _elements.Add(potion);
                     }
+
                     if (charUnicode == 35)
                     {
                         Wall wall = new Wall(new Position(j, i + 3), '#', ConsoleColor.Gray);
                         _elements.Add(wall);
                     }
+
                     else if(charUnicode == 64)
                     {
                         player = new Player(new Position(j, i + 3), '@', ConsoleColor.Yellow);
                         _elements.Add(player);
                     }
+
                     else if (charUnicode == 97)
                     {
                         Armor armor = new Armor(new Position(j, i + 3), 'a', ConsoleColor.DarkYellow);
                         _elements.Add(armor);
+                    }
+
+                    else if (charUnicode == 108)
+                    {
+                         Sword sword = new Sword(new Position(j, i + 3), 'l', ConsoleColor.DarkYellow);
+                        _elements.Add(sword);
                     }
 
                     else if (charUnicode == 114)
@@ -44,11 +53,13 @@ public static class LevelData
                         Rat rat = new Rat(new Position(j, i + 3), 'r', ConsoleColor.Red);
                         _elements.Add(rat);
                     }
+
                     else if (charUnicode == 115)
                     {
                         Snake snake = new Snake(new Position(j, i + 3), 's', ConsoleColor.Green);
                         _elements.Add(snake);
                     }
+
                     else if (charUnicode == 116)
                     {
                         Troll troll = new Troll(new Position(j, i + 3), 't', ConsoleColor.DarkCyan);

@@ -8,7 +8,7 @@ public class Snake : Enemy
         Name = "Snake";
         HP = 25;
         AttackDice = new Dice(3, 4, 2);
-        DefenseDice = new Dice(1, 8, 5);
+        DefenceDice = new Dice(1, 8, 5);
     }
 
     public override void Update()

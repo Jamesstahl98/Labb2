@@ -5,7 +5,7 @@
         Name = "Troll";
         HP = 25;
         AttackDice = new Dice(4, 5, 1);
-        DefenseDice = new Dice(1, 4, 2);
+        DefenceDice = new Dice(1, 4, 2);
     }
 
     public override void Update()
