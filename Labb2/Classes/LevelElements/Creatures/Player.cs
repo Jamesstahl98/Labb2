@@ -28,6 +28,7 @@ public class Player : Creature
         foreach(LevelElement element in LevelData.Elements.ToList())
         {
             (element as Enemy)?.Update();
+            (element as Item)?.Update();
         }
     }
 

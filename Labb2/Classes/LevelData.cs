@@ -18,6 +18,11 @@ public static class LevelData
                 for (int j = 0; j <= lines[i].Length+1; j++)
                 {
                     int charUnicode = reader.Read();
+                    if (charUnicode == 33)
+                    {
+                        Potion potion = new Potion(new Position(j, i + 3), '#', ConsoleColor.Cyan);
+                        _elements.Add(potion);
+                    }
                     if (charUnicode == 35)
                     {
                         Wall wall = new Wall(new Position(j, i + 3), '#', ConsoleColor.Gray);
