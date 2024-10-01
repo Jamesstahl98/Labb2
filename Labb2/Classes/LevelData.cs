@@ -20,7 +20,7 @@ public static class LevelData
                     int charUnicode = reader.Read();
                     if (charUnicode == 33)
                     {
-                        Potion potion = new Potion(new Position(j, i + 3), '#', ConsoleColor.Cyan);
+                        Potion potion = new Potion(new Position(j, i + 3), '!', ConsoleColor.Cyan);
                         _elements.Add(potion);
                     }
                     if (charUnicode == 35)
@@ -33,6 +33,12 @@ public static class LevelData
                         player = new Player(new Position(j, i + 3), '@', ConsoleColor.Yellow);
                         _elements.Add(player);
                     }
+                    else if (charUnicode == 97)
+                    {
+                        Armor armor = new Armor(new Position(j, i + 3), 'a', ConsoleColor.DarkYellow);
+                        _elements.Add(armor);
+                    }
+
                     else if (charUnicode == 114)
                     {
                         Rat rat = new Rat(new Position(j, i + 3), 'r', ConsoleColor.Red);
