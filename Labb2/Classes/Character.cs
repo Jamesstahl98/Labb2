@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Xml.Linq;
 
 public class Character : LevelElement
 {
@@ -11,8 +12,6 @@ public class Character : LevelElement
 
     public override void ElementContact(Character element)
     {
-        Console.ForegroundColor = ConsoleColor.Gray;
-
         Console.SetCursorPosition(0, 1);
         int damage = DamageRoll(element.AttackDice, DefenseDice, element, this);
         ChangeHP(-damage);
@@ -33,7 +32,7 @@ public class Character : LevelElement
         {
             damage = 0;
         }
-
+        Console.ForegroundColor = attacker.Color;
         Console.Write($"{attacker.Name} (ATK: {attackDice} => {damageRoll}) attacked {defender.Name} (DEF: {defenseDice} => {defenseRoll}), dealing {damage} damage.");
 
         return damage;

@@ -25,7 +25,7 @@ public static class LevelData
                     }
                     else if(charUnicode == 64)
                     {
-                        player = new Player(new Position(j, i + 3), '@', ConsoleColor.Gray);
+                        player = new Player(new Position(j, i + 3), '@', ConsoleColor.Yellow);
                         _elements.Add(player);
                     }
                     else if (charUnicode == 114)
