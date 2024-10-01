@@ -37,17 +37,16 @@ public class Rat : Enemy
                 break;
         }
 
-        Console.SetCursorPosition(PosX, PosY);
-        Console.Write(" ");
-
         if (IsFreeSpace(newPos))
         {
+            Console.SetCursorPosition(PosX, PosY);
+            Console.Write(" ");
             PosX = newPos.X;
             PosY = newPos.Y;
-        }
-        if (IsPlayerNearby())
-        {
-            Draw();
+            if(IsPlayerNearby())
+            {
+                Draw();
+            }
         }
     }
 }

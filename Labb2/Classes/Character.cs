@@ -31,7 +31,6 @@ public class Character : LevelElement
 
     public void Die()
     {
-        Debug.WriteLine("Die");
         Console.SetCursorPosition(PosX, PosY);
         Console.Write(" ");
         LevelData.Elements.Remove(this);
