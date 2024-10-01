@@ -6,7 +6,7 @@ ConsoleKeyInfo cki;
 do
 {
     cki = Console.ReadKey(true);
-    ClearCombatLog();
+    ClearLog();
     if (cki.Key == ConsoleKey.LeftArrow)
     {
         player.Update(new Position(player.PosX-1, player.PosY));
@@ -25,19 +25,34 @@ do
     }
     turn++;
     PrintPlayerHPAndTurn(player.HP, turn);
+    if(player.HP <= 0)
+    {
+        GameOver();
+        break;
+    }
 } while (cki.Key != ConsoleKey.Escape);
 
 static void PrintPlayerHPAndTurn(int health, int turn)
 {
     Console.ForegroundColor = ConsoleColor.Gray;
     Console.SetCursorPosition(0, 0);
-    Console.WriteLine($"Turn: {turn}, Player Health: {health}");
+    Console.Write($"Turn: {turn}, Player Health: {health}");
 }
 
-static void ClearCombatLog()
+static void ClearLog()
 {
+    Console.SetCursorPosition(0, 0);
+    Console.Write(new string(' ', Console.WindowWidth));
     Console.SetCursorPosition(0, 1);
     Console.Write(new string(' ', Console.WindowWidth));
     Console.SetCursorPosition(0, 2);
     Console.Write(new string(' ', Console.WindowWidth));
+}
+
+static void GameOver()
+{
+    ClearLog();
+    Console.SetCursorPosition(0, 0);
+    Console.Write("You died :(");
+    Console.ReadKey();
 }
