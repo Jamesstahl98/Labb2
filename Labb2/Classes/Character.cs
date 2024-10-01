@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Xml.Linq;
 
-public class Character : LevelElement
+public abstract class Character : LevelElement
 {
     public string Name { get; set; }
     public int HP { get; set; }
@@ -54,12 +54,7 @@ public class Character : LevelElement
         }
     }
 
-    public void Die()
-    {
-        Console.SetCursorPosition(PosX, PosY);
-        Console.Write(" ");
-        LevelData.Elements.Remove(this);
-    }
+    public abstract void Die();
 
     public override void OutOfRange()
     {

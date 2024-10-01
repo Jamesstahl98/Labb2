@@ -17,4 +17,11 @@ public abstract class Enemy : Character
             base.ElementContact(element);
         }
     }
+
+    public override void Die()
+    {
+        Console.SetCursorPosition(PosX, PosY);
+        Console.Write(" ");
+        LevelData.Elements.Remove(this);
+    }
 }
