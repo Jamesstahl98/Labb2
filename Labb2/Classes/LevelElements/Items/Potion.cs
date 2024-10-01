@@ -10,11 +10,16 @@
     {
         if(element is Player)
         {
-            element.HP += 50;
+            element.HP += HPRestore;
             if(element.HP>100)
             {
                 element.HP = 100;
             }
+
+            Console.SetCursorPosition(0, 1);
+            Console.ForegroundColor = element.Color;
+            Console.Write($"Player picked up potion, restoring {HPRestore} health.");
+
             Console.SetCursorPosition(PosX, PosY);
             Console.Write(" ");
             LevelData.Elements.Remove(this);
