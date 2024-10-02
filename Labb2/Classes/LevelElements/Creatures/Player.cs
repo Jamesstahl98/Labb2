@@ -12,7 +12,7 @@ public class Player : Creature
         DefenceDice = new Dice(2, 6, 0);
     }
 
-    public void PlayerInput()
+    public void ReadPlayerInput()
     {
         ConsoleKeyInfo cki;
         do
