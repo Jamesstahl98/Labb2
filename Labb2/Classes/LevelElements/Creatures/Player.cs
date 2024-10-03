@@ -60,7 +60,7 @@ public class Player : Creature
 
         Draw();
 
-        foreach(LevelElement element in LevelData.Elements.ToList())
+        foreach (LevelElement element in LevelData.Elements.ToList())
         {
             (element as Enemy)?.Update();
             (element as Item)?.Update();
@@ -69,24 +69,20 @@ public class Player : Creature
 
     private void RevealWalls()
     {
-        for (int i = 0; i < LevelData.Elements.Count; i++)
+        IEnumerable<Wall> walls = LevelData.Elements.OfType<Wall>();
+
+        foreach (Wall wall in walls)
         {
-            if(LevelData.Elements[i] is Wall)
+            int posXDiff = Math.Abs(PosX - wall.PosX);
+            int posYDiff = Math.Abs(PosY - wall.PosY);
+            if ((posXDiff * posXDiff) + (posYDiff * posYDiff) < 25)
             {
-                int posXDiff = Math.Abs(PosX - LevelData.Elements[i].PosX);
-                int posYDiff = Math.Abs(PosY - LevelData.Elements[i].PosY);
-                if ((posXDiff * posXDiff) + (posYDiff * posYDiff) < 25)
-                {
-                    LevelData.Elements[i].IsDiscovered = true;
-                    LevelData.Elements[i].Draw();
-                }
-                else
-                {
-                    if (LevelData.Elements[i].IsDiscovered == true)
-                    {
-                        LevelData.Elements[i].OutOfRange();
-                    }
-                }
+                wall.IsDiscovered = true;
+                wall.Draw();
+            }
+            else
+            {
+                wall.OutOfRange();
             }
         }
     }

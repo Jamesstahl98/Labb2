@@ -38,7 +38,5 @@ public abstract class LevelElement
         }
     }
 
-    public abstract void OutOfRange();
-
     public abstract void ElementContact(Creature element);
 }

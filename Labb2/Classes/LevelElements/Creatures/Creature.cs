@@ -66,11 +66,6 @@ public abstract class Creature : LevelElement
         LevelData.Elements.Remove(this);
     }
 
-    public override void OutOfRange()
-    {
-
-    }
-
     protected bool IsFreeSpace(Position pos)
     {
         for (int i = 0; i < LevelData.Elements.Count; i++)

@@ -4,10 +4,13 @@
 
     public override void ElementContact(Creature element) { }
 
-    public override void OutOfRange()
+    public void OutOfRange()
     {
-        Console.ForegroundColor = Color + 1;
-        Console.SetCursorPosition(PosX, PosY);
-        Console.Write(Character);
+        if(IsDiscovered)
+        {
+            Console.ForegroundColor = Color + 1;
+            Console.SetCursorPosition(PosX, PosY);
+            Console.Write(Character);
+        }
     }
 }

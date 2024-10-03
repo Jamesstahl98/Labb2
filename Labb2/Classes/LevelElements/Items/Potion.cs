@@ -36,7 +36,4 @@
             Draw();
         }
     }
-
-    public override void OutOfRange() { }
-
 }

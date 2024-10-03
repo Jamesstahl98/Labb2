@@ -47,7 +47,4 @@ public abstract class DiceModifierItem : Item
             Draw();
         }
     }
-
-    public override void OutOfRange() { }
-
 }
