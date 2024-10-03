@@ -31,9 +31,7 @@ public abstract class DiceModifierItem : Item
             Console.ForegroundColor = element.Color;
             Console.Write($"Player picked up {Name}, increasing {DiceName} modifier by {Amount}.");
 
-            Console.SetCursorPosition(PosX, PosY);
-            Console.Write(" ");
-            LevelData.Elements.Remove(this);
+            RemoveElement();
         }
     }
 

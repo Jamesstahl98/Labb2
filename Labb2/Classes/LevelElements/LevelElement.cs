@@ -24,6 +24,13 @@ public abstract class LevelElement
         Console.Write(Character);
     }
 
+    public void RemoveElement()
+    {
+        Console.SetCursorPosition(PosX, PosY);
+        Console.Write(" ");
+        LevelData.Elements.Remove(this);
+    }
+
     public bool IsPlayerNearby()
     {
         int posXDiff = Math.Abs(PosX - PlayerObject.PosX);

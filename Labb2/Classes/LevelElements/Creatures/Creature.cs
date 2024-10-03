@@ -55,15 +55,8 @@ public abstract class Creature : LevelElement
         HP += amount;
         if (HP <= 0)
         {
-            Die();
+            RemoveElement();
         }
-    }
-
-    public void Die()
-    {
-        Console.SetCursorPosition(PosX, PosY);
-        Console.Write(" ");
-        LevelData.Elements.Remove(this);
     }
 
     protected bool IsFreeSpace(Position pos)
