@@ -15,34 +15,27 @@ public class Player : Creature
     public void ReadPlayerInput()
     {
         ConsoleKeyInfo cki;
-        do
+        cki = Console.ReadKey(true);
+        if (cki.Key == ConsoleKey.LeftArrow)
         {
-            cki = Console.ReadKey(true);
-            UserInterface.ClearLog();
-            if (cki.Key == ConsoleKey.LeftArrow)
-            {
-                Update(new Position(PosX - 1, PosY));
-            }
-            else if (cki.Key == ConsoleKey.RightArrow)
-            {
-                Update(new Position(PosX + 1, PosY));
-            }
-            else if (cki.Key == ConsoleKey.UpArrow)
-            {
-                Update(new Position(PosX, PosY - 1));
-            }
-            else if (cki.Key == ConsoleKey.DownArrow)
-            {
-                Update(new Position(PosX, PosY + 1));
-            }
-            Turn++;
-            UserInterface.PrintPlayerHPAndTurn(HP, Turn);
-            if (HP <= 0)
-            {
-                UserInterface.GameOver();
-                break;
-            }
-        } while (cki.Key != ConsoleKey.Escape);
+            Update(new Position(PosX - 1, PosY));
+        }
+        else if (cki.Key == ConsoleKey.RightArrow)
+        {
+            Update(new Position(PosX + 1, PosY));
+        }
+        else if (cki.Key == ConsoleKey.UpArrow)
+        {
+            Update(new Position(PosX, PosY - 1));
+        }
+        else if (cki.Key == ConsoleKey.DownArrow)
+        {
+            Update(new Position(PosX, PosY + 1));
+        }
+        else if (cki.Key == ConsoleKey.Escape)
+        {
+            Environment.Exit(0);
+        }
     }
 
     public void Update(Position newPos)
@@ -50,7 +43,9 @@ public class Player : Creature
         Console.SetCursorPosition(PosX, PosY);
         Console.Write(" ");
 
-        if(IsFreeSpace(newPos))
+        UserInterface.ClearLog();
+
+        if (IsFreeSpace(newPos))
         {
             PosX = newPos.X;
             PosY = newPos.Y;
@@ -59,12 +54,6 @@ public class Player : Creature
         RevealWalls();
 
         Draw();
-
-        foreach (LevelElement element in LevelData.Elements.ToList())
-        {
-            (element as Enemy)?.Update();
-            (element as Item)?.Update();
-        }
     }
 
     private void RevealWalls()

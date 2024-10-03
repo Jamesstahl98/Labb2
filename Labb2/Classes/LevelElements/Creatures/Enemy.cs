@@ -10,7 +10,7 @@ public abstract class Enemy : Creature
     public override void ElementContact(Creature element)
     {
         WasAttackedThisRound = true;
-        if (element != PlayerObject)
+        if (element != LevelData.Player)
         {
             return;
         }

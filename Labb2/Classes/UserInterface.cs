@@ -49,6 +49,7 @@ public static class UserInterface
     {
         ClearLog();
         Console.SetCursorPosition(0, 0);
+        Console.ForegroundColor = ConsoleColor.Gray;
         Console.Write("You died :(");
         Console.ReadKey();
     }

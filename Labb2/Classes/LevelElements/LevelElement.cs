@@ -2,7 +2,6 @@
 
 public abstract class LevelElement
 {
-    public Player PlayerObject { get; set; }
     public int PosX { get; set; }
     public int PosY { get; set; }
     public char Character { get; set; }
@@ -33,8 +32,8 @@ public abstract class LevelElement
 
     public bool IsPlayerNearby()
     {
-        int posXDiff = Math.Abs(PosX - PlayerObject.PosX);
-        int posYDiff = Math.Abs(PosY - PlayerObject.PosY);
+        int posXDiff = Math.Abs(PosX - LevelData.Player.PosX);
+        int posYDiff = Math.Abs(PosY - LevelData.Player.PosY);
         if ((posXDiff * posXDiff) + (posYDiff * posYDiff) < 25)
         {
             return true;

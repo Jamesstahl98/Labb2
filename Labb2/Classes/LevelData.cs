@@ -8,9 +8,10 @@ public static class LevelData
 
     public static List<LevelElement> Elements { get { return _elements; } }
 
-    public static Player Load(string fileName)
+    public static Player Player { get; set; }
+
+    public static void Load(string fileName)
     {
-        Player player = null;
         using (StreamReader reader = new StreamReader(fileName))
         {
             int lineCounter = 0;
@@ -31,8 +32,8 @@ public static class LevelData
                             _elements.Add(wall);
                             break;
                         case 64:
-                            player = new Player(new Position(i, lineCounter + 3), '@', ConsoleColor.Yellow);
-                            _elements.Add(player);
+                            Player = new Player(new Position(i, lineCounter + 3), '@', ConsoleColor.Yellow);
+                            _elements.Add(Player);
                             break;
                         case 97:
                             Armor armor = new Armor(new Position(i, lineCounter + 3), 'a', ConsoleColor.DarkYellow);
@@ -60,13 +61,6 @@ public static class LevelData
             }
         }
 
-        foreach(LevelElement element in _elements)
-        {
-            element.PlayerObject = player;
-        }
-
-        player.Update(new Position(player.PosX, player.PosY));
-
-        return player;
+        Player.Update(new Position(Player.PosX, Player.PosY));
     }
 }
