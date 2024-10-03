@@ -20,9 +20,7 @@
             Console.ForegroundColor = element.Color;
             Console.Write($"Player picked up potion, restoring {HPRestore} health.");
 
-            Console.SetCursorPosition(PosX, PosY);
-            Console.Write(" ");
-            LevelData.Elements.Remove(this);
+            RemoveElement();
         }
     }
 

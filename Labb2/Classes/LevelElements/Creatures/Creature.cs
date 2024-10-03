@@ -12,24 +12,21 @@ public abstract class Creature : LevelElement
 
     public override void ElementContact(Creature element)
     {
-        Console.SetCursorPosition(0, 1);
-        DamageRoll(element.AttackDice, DefenceDice, element, this);
+        DamageRoll(element, this, true);
 
         if(HP <= 0)
         {
             return;
         }
 
-        Console.SetCursorPosition(0, 2);
-        DamageRoll(AttackDice, element.DefenceDice, this, element);
+        DamageRoll(this, element, false);
     }
 
-    public void DamageRoll(Dice attackDice, Dice defenseDice, Creature attacker, Creature defender)
+    public void DamageRoll(Creature attacker, Creature defender, bool isFirstAttack)
     {
-        (int, int) cursorPos = Console.GetCursorPosition();
-        int damageRoll = attackDice.Throw();
-        int defenseRoll = defenseDice.Throw();
-        int damage = damageRoll - defenseRoll;
+        int damageRoll = attacker.AttackDice.Throw();
+        int defenceRoll = defender.DefenceDice.Throw();
+        int damage = damageRoll - defenceRoll;
 
         if (damage < 0)
         {
@@ -37,17 +34,7 @@ public abstract class Creature : LevelElement
         }
         defender.ChangeHP(-damage);
 
-        Console.ForegroundColor = attacker.Color;
-        Console.SetCursorPosition(cursorPos.Item1, cursorPos.Item2);
-        Console.Write($"{attacker.Name} (ATK: {attackDice} => {damageRoll}) attacked {defender.Name} (DEF: {defenseDice} => {defenseRoll}), dealing {damage} damage. ");
-        if(defender.HP <= 0)
-        {
-            Console.Write("Instantly killing it");
-        }
-        else
-        {
-            Console.Write($"{defender} has {defender.HP} health left.");
-        }
+        UserInterface.PrintCombatLog(attacker, defender, damageRoll, defenceRoll, damage, isFirstAttack);
     }
 
     public void ChangeHP(int amount)
