@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-public class Troll : Enemy
+﻿public class Troll : Enemy
 {
     public Troll(Position pos, char c, ConsoleColor color) : base(pos, c, color)
     {

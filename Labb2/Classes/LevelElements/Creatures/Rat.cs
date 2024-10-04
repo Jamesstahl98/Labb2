@@ -48,8 +48,6 @@ public class Rat : Enemy
             Console.SetCursorPosition(Position.X, Position.Y);
             Console.Write(" ");
             Position = newPos;
-            //PosX = newPos.X;
-            //PosY = newPos.Y;
             if(IsPlayerNearby())
             {
                 Draw();

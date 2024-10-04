@@ -48,8 +48,6 @@ public class Player : Creature
         if (IsFreeSpace(newPos))
         {
             Position = newPos;
-            //PosX = newPos.X;
-            //PosY = newPos.Y;
         }
 
         RevealWalls();
