@@ -3,7 +3,7 @@
 public abstract class LevelElement
 {
     public Position Position { get; set; }
-    public char Character { get; set; }
+    protected char Character { get; set; }
     public ConsoleColor Color { get; set; }
     public bool IsDiscovered { get; set; }
 
