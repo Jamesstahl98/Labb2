@@ -12,17 +12,18 @@ public abstract class Creature : LevelElement
 
     public override void ElementContact(Creature element)
     {
-        DamageRoll(element, true);
+        UserInterface.ClearCombatLog();
+        DamageRoll(element);
 
         if(HP <= 0)
         {
             return;
         }
 
-        element.DamageRoll(this, false);
+        element.DamageRoll(this);
     }
 
-    public void DamageRoll(Creature attacker, bool isFirstAttack)
+    public void DamageRoll(Creature attacker)
     {
         int damageRoll = attacker.AttackDice.Throw();
         int defenceRoll = DefenceDice.Throw();
@@ -34,7 +35,7 @@ public abstract class Creature : LevelElement
         }
         ChangeHP(-damage);
 
-        UserInterface.PrintCombatLog(attacker, this, damageRoll, defenceRoll, damage, isFirstAttack);
+        UserInterface.PrintCombatLog(attacker, this, damageRoll, defenceRoll, damage);
     }
 
     public void ChangeHP(int amount)
