@@ -24,7 +24,7 @@ public class Rat : Enemy
             return;
         }
 
-        var newPos = new Position(PosX, PosY);
+        var newPos = new Position(Position.X, Position.Y);
 
         dir randomDir = (dir)dirValues.GetValue(rand.Next(dirValues.Length));
         switch(randomDir)
@@ -45,10 +45,11 @@ public class Rat : Enemy
 
         if (IsFreeSpace(newPos))
         {
-            Console.SetCursorPosition(PosX, PosY);
+            Console.SetCursorPosition(Position.X, Position.Y);
             Console.Write(" ");
-            PosX = newPos.X;
-            PosY = newPos.Y;
+            Position = newPos;
+            //PosX = newPos.X;
+            //PosY = newPos.Y;
             if(IsPlayerNearby())
             {
                 Draw();

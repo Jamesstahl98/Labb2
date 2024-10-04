@@ -61,6 +61,6 @@ public static class LevelData
             }
         }
 
-        Player.Update(new Position(Player.PosX, Player.PosY));
+        Player.Update(new Position(Player.Position.X, Player.Position.Y));
     }
 }

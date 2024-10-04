@@ -54,7 +54,7 @@ public abstract class Creature : LevelElement
             {
                 continue;
             }
-            if (LevelData.Elements[i].PosX == pos.X && LevelData.Elements[i].PosY == pos.Y)
+            if (LevelData.Elements[i].Position.X == pos.X && LevelData.Elements[i].Position.Y == pos.Y)
             {
                 LevelData.Elements[i].ElementContact(this);
                 return false;

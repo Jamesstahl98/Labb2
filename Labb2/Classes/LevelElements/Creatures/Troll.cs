@@ -1,4 +1,6 @@
-﻿public class Troll : Enemy
+﻿using System.Diagnostics;
+
+public class Troll : Enemy
 {
     public Troll(Position pos, char c, ConsoleColor color) : base(pos, c, color)
     {
@@ -16,37 +18,37 @@
             return;
         }
 
-        Console.SetCursorPosition(PosX, PosY);
+        Console.SetCursorPosition(Position.X, Position.Y);
         Console.Write(" ");
 
-        int posXDiff = Math.Abs(PosX - LevelData.Player.PosX);
-        int posYDiff = Math.Abs(PosY - LevelData.Player.PosY);
+        int posXDiff = Math.Abs(Position.X - LevelData.Player.Position.X);
+        int posYDiff = Math.Abs(Position.Y - LevelData.Player.Position.Y);
 
         if ((posXDiff * posXDiff) + (posYDiff * posYDiff) < 25)
         {
-            int xDirectionToPlayer = Math.Sign(LevelData.Player.PosX - PosX);
-            int yDirectionToPlayer = Math.Sign(LevelData.Player.PosY - PosY);
+            int xDirectionToPlayer = Math.Sign(LevelData.Player.Position.X - Position.X);
+            int yDirectionToPlayer = Math.Sign(LevelData.Player.Position.Y - Position.Y);
 
             if (posXDiff > posYDiff)
             {
-                if (IsFreeSpace(new Position(PosX + xDirectionToPlayer, PosY)))
+                if (IsFreeSpace(new Position(Position.X + xDirectionToPlayer, Position.Y)))
                 {
-                    PosX += xDirectionToPlayer;
+                    Position = new Position(Position.X + xDirectionToPlayer, Position.Y);
                 }
-                else if (IsFreeSpace(new Position(PosX, PosY + yDirectionToPlayer)))
+                else if (IsFreeSpace(new Position(Position.X, Position.Y + yDirectionToPlayer)))
                 {
-                    PosY += yDirectionToPlayer;
+                    Position = new Position(Position.X, Position.Y + yDirectionToPlayer);
                 }
             }
             else
             {
-                if (IsFreeSpace(new Position(PosX, PosY + yDirectionToPlayer)))
+                if (IsFreeSpace(new Position(Position.X, Position.Y + yDirectionToPlayer)))
                 {
-                    PosY += yDirectionToPlayer;
+                    Position = new Position(Position.X, Position.Y + yDirectionToPlayer);
                 }
-                else if(IsFreeSpace(new Position(PosX + xDirectionToPlayer, PosY)))
+                else if(IsFreeSpace(new Position(Position.X + xDirectionToPlayer, Position.Y)))
                 {
-                    PosX += xDirectionToPlayer;
+                    Position =new Position(Position.X + xDirectionToPlayer, Position.Y);
                 }
             }
         }

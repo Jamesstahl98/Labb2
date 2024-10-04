@@ -19,29 +19,30 @@ public class Snake : Enemy
             return;
         }
 
-        int posXDiff = Math.Abs(PosX - LevelData.Player.PosX);
-        int posYDiff = Math.Abs(PosY - LevelData.Player.PosY);
+        int posXDiff = Math.Abs(Position.X - LevelData.Player.Position.X);
+        int posYDiff = Math.Abs(Position.Y - LevelData.Player.Position.Y);
 
-        var newPos = new Position(PosX, PosY);
+        var newPos = new Position(Position.X, Position.Y);
 
         if ((posXDiff * posXDiff) + (posYDiff * posYDiff) < 9)
         {
 
             if (posXDiff>posYDiff)
             {
-                newPos.X += Math.Sign(PosX - LevelData.Player.PosX);
+                newPos.X += Math.Sign(Position.X - LevelData.Player.Position.X);
             }
             else
             {
-                newPos.Y += Math.Sign(PosY - LevelData.Player.PosY);
+                newPos.Y += Math.Sign(Position.Y - LevelData.Player.Position.Y);
             }
         }
         if (IsFreeSpace(newPos))
         {
-            Console.SetCursorPosition(PosX, PosY);
+            Console.SetCursorPosition(Position.X, Position.Y);
             Console.Write(" ");
-            PosX = newPos.X;
-            PosY = newPos.Y;
+            Position = newPos;
+            //PosX = newPos.X;
+            //PosY = newPos.Y;
         }
         if (IsPlayerNearby())
         {

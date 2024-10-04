@@ -18,19 +18,19 @@ public class Player : Creature
         cki = Console.ReadKey(true);
         if (cki.Key == ConsoleKey.LeftArrow)
         {
-            Update(new Position(PosX - 1, PosY));
+            Update(new Position(Position.X - 1, Position.Y));
         }
         else if (cki.Key == ConsoleKey.RightArrow)
         {
-            Update(new Position(PosX + 1, PosY));
+            Update(new Position(Position.X + 1, Position.Y));
         }
         else if (cki.Key == ConsoleKey.UpArrow)
         {
-            Update(new Position(PosX, PosY - 1));
+            Update(new Position(Position.X, Position.Y - 1));
         }
         else if (cki.Key == ConsoleKey.DownArrow)
         {
-            Update(new Position(PosX, PosY + 1));
+            Update(new Position(Position.X, Position.Y + 1));
         }
         else if (cki.Key == ConsoleKey.Escape)
         {
@@ -40,15 +40,16 @@ public class Player : Creature
 
     public void Update(Position newPos)
     {
-        Console.SetCursorPosition(PosX, PosY);
+        Console.SetCursorPosition(Position.X, Position.Y);
         Console.Write(" ");
 
         UserInterface.ClearLog();
 
         if (IsFreeSpace(newPos))
         {
-            PosX = newPos.X;
-            PosY = newPos.Y;
+            Position = newPos;
+            //PosX = newPos.X;
+            //PosY = newPos.Y;
         }
 
         RevealWalls();
@@ -62,8 +63,8 @@ public class Player : Creature
 
         foreach (Wall wall in walls)
         {
-            int posXDiff = Math.Abs(PosX - wall.PosX);
-            int posYDiff = Math.Abs(PosY - wall.PosY);
+            int posXDiff = Math.Abs(Position.X - wall.Position.X);
+            int posYDiff = Math.Abs(Position.Y - wall.Position.Y);
             if ((posXDiff * posXDiff) + (posYDiff * posYDiff) < 25)
             {
                 wall.IsDiscovered = true;

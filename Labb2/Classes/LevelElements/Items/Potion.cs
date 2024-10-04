@@ -26,7 +26,7 @@
 
     public override void Update()
     {
-        Console.SetCursorPosition(PosX, PosY);
+        Console.SetCursorPosition(Position.X, Position.Y);
         Console.Write(" ");
 
         if (IsPlayerNearby())

@@ -9,7 +9,7 @@
         if(IsDiscovered)
         {
             Console.ForegroundColor = Color + 1;
-            Console.SetCursorPosition(PosX, PosY);
+            Console.SetCursorPosition(Position.X, Position.Y);
             Console.Write(Character);
         }
     }
