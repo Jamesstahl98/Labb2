@@ -16,9 +16,7 @@
                 element.HP = 100;
             }
 
-            Console.SetCursorPosition(0, 1);
-            Console.ForegroundColor = element.Color;
-            Console.Write($"Player picked up potion, restoring {HPRestore} health.");
+            UserInterface.PrintItemPickup(this);
 
             RemoveElement();
         }

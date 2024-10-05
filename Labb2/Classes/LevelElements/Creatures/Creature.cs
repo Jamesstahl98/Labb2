@@ -12,7 +12,7 @@ public abstract class Creature : LevelElement
 
     public override void ElementContact(Creature element)
     {
-        UserInterface.ClearCombatLog();
+        UserInterface.ClearLog();
         DamageRoll(element);
 
         if(HP <= 0)

@@ -1,4 +1,6 @@
-﻿using static System.Net.Mime.MediaTypeNames;
+﻿using System.Diagnostics;
+using System.Xml.Linq;
+using static System.Net.Mime.MediaTypeNames;
 
 public static class UserInterface
 {
@@ -18,10 +20,10 @@ public static class UserInterface
             $"(DEF: {defender.DefenceDice} => {defenceRoll}), " +
             $"dealing {damage} damage. ");
 
-        Console.SetCursorPosition(0, combatLogEntries.Count);
+        Console.SetCursorPosition(0, LevelData.LineCount+combatLogEntries.Count);
         Console.ForegroundColor = attacker.Color;
 
-        Console.Write(combatLogEntries[combatLogEntries.Count-1]);
+        Console.Write(combatLogEntries[^1]);
 
         if (defender.HP <= 0)
         {
@@ -33,23 +35,35 @@ public static class UserInterface
         }
     }
 
+    public static void PrintItemPickup(Item item)
+    {
+        if(item is DiceModifierItem)
+        {
+            combatLogEntries.Add($"Player picked up {(item as DiceModifierItem)?.Name}, " +
+                $"increasing {(item as DiceModifierItem)?.DiceName} " +
+                $"modifier by {(item as DiceModifierItem)?.Amount}.");
+        }
+        else if(item is Potion)
+        {
+            combatLogEntries.Add($"Player picked up potion, restoring {(item as Potion)?.HPRestore} health.");
+        }
+
+        Console.SetCursorPosition(0, LevelData.LineCount + combatLogEntries.Count);
+        Console.ForegroundColor = item.Color;
+
+        Console.Write(combatLogEntries[^1]);
+    }
+
     public static void ClearLog()
     {
         Console.SetCursorPosition(0, 0);
         Console.Write(new string(' ', Console.WindowWidth));
-        Console.SetCursorPosition(0, 1);
-        Console.Write(new string(' ', Console.WindowWidth));
-        Console.SetCursorPosition(0, 2);
-        Console.Write(new string(' ', Console.WindowWidth));
-    }
-
-    public static void ClearCombatLog()
-    {
+        for (int i = 0; i < combatLogEntries.Count; i++)
+        {
+            Console.SetCursorPosition(0, LevelData.LineCount + i+1);
+            Console.Write(new string(' ', Console.WindowWidth));
+        }
         combatLogEntries.Clear();
-        Console.SetCursorPosition(0, 1);
-        Console.Write(new string(' ', Console.WindowWidth));
-        Console.SetCursorPosition(0, 2);
-        Console.Write(new string(' ', Console.WindowWidth));
     }
 
     public static void GameOver()

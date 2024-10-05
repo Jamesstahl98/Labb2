@@ -18,18 +18,14 @@ public abstract class DiceModifierItem : Item
         {
             if(DiceType == "defence")
             {
-                Debug.WriteLine("armor");
                 (element as Player).DefenceDice.Modifier += Amount;
             }
             else
             {
-                Debug.WriteLine("attack");
                 (element as Player).AttackDice.Modifier += Amount;
             }
 
-            Console.SetCursorPosition(0, 1);
-            Console.ForegroundColor = element.Color;
-            Console.Write($"Player picked up {Name}, increasing {DiceName} modifier by {Amount}.");
+            UserInterface.PrintItemPickup(this);
 
             RemoveElement();
         }
