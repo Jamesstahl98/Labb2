@@ -37,16 +37,7 @@ public static class UserInterface
 
     public static void PrintItemPickup(Item item)
     {
-        if(item is DiceModifierItem)
-        {
-            combatLogEntries.Add($"Player picked up {(item as DiceModifierItem)?.Name}, " +
-                $"increasing {(item as DiceModifierItem)?.DiceName} " +
-                $"modifier by {(item as DiceModifierItem)?.Amount}.");
-        }
-        else if(item is Potion)
-        {
-            combatLogEntries.Add($"Player picked up potion, restoring {(item as Potion)?.HPRestore} health.");
-        }
+        combatLogEntries.Add(item.ToString());
 
         Console.SetCursorPosition(0, LevelData.LineCount + combatLogEntries.Count);
         Console.ForegroundColor = item.Color;

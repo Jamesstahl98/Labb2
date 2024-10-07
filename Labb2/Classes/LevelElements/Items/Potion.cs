@@ -32,4 +32,9 @@
             Draw();
         }
     }
+
+    public override string ToString()
+    {
+        return $"Player picked up potion, restoring {HPRestore} health.";
+    }
 }

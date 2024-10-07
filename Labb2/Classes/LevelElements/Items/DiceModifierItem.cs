@@ -41,4 +41,12 @@ public abstract class DiceModifierItem : Item
             Draw();
         }
     }
+
+    public override string ToString()
+    {
+        return $"Player picked up {Name}, " +
+                $"increasing {DiceName} " +
+                $"by {Amount}.";
+
+    }
 }
