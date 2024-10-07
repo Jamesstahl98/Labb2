@@ -19,15 +19,14 @@
         Console.SetCursorPosition(Position.X, Position.Y);
         Console.Write(" ");
 
-        int posXDiff = Math.Abs(Position.X - LevelData.Player.Position.X);
-        int posYDiff = Math.Abs(Position.Y - LevelData.Player.Position.Y);
+        (int posXDistance, int posYDistance) = GetXAndYDistanceToElement(LevelData.Player.Position);
 
-        if ((posXDiff * posXDiff) + (posYDiff * posYDiff) < 25)
+        if ((posXDistance * posXDistance) + (posYDistance * posYDistance) < 25)
         {
             int xDirectionToPlayer = Math.Sign(LevelData.Player.Position.X - Position.X);
             int yDirectionToPlayer = Math.Sign(LevelData.Player.Position.Y - Position.Y);
 
-            if (posXDiff > posYDiff)
+            if (posXDistance > posYDistance)
             {
                 if (IsFreeSpace(new Position(Position.X + xDirectionToPlayer, Position.Y)))
                 {

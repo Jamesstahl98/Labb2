@@ -42,5 +42,11 @@ public abstract class LevelElement
         }
     }
 
+    public (int, int) GetXAndYDistanceToElement(Position elementPosition)
+    {
+        return (Math.Abs(Position.X - elementPosition.X), 
+            Math.Abs(Position.Y - elementPosition.Y));
+    }
+
     public abstract void ElementContact(Creature element);
 }

@@ -19,15 +19,14 @@ public class Snake : Enemy
             return;
         }
 
-        int posXDiff = Math.Abs(Position.X - LevelData.Player.Position.X);
-        int posYDiff = Math.Abs(Position.Y - LevelData.Player.Position.Y);
+        (int posXDistance, int posYDistance) = GetXAndYDistanceToElement(LevelData.Player.Position);
 
         var newPos = new Position(Position.X, Position.Y);
 
-        if ((posXDiff * posXDiff) + (posYDiff * posYDiff) < 9)
+        if ((posXDistance * posXDistance) + (posYDistance * posYDistance) < 9)
         {
 
-            if (posXDiff>posYDiff)
+            if (posXDistance>posYDistance)
             {
                 newPos.X += Math.Sign(Position.X - LevelData.Player.Position.X);
             }
