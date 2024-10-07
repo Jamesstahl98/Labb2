@@ -50,28 +50,6 @@ public class Player : Creature
             Position = newPos;
         }
 
-        RevealWalls();
-
         Draw();
-    }
-
-    private void RevealWalls()
-    {
-        IEnumerable<Wall> walls = LevelData.Elements.OfType<Wall>();
-
-        foreach (Wall wall in walls)
-        {
-            int posXDiff = Math.Abs(Position.X - wall.Position.X);
-            int posYDiff = Math.Abs(Position.Y - wall.Position.Y);
-            if ((posXDiff * posXDiff) + (posYDiff * posYDiff) < 25)
-            {
-                wall.IsDiscovered = true;
-                wall.Draw();
-            }
-            else
-            {
-                wall.OutOfRange();
-            }
-        }
     }
 }

@@ -6,12 +6,14 @@
     {
         Console.CursorVisible = false;
         LevelData.Load("Level1.txt");
+        UpdateWalls();
 
         while(LevelData.Player.HP > 0)
         {
             UserInterface.PrintPlayerHPAndTurn(LevelData.Player.HP, TurnCounter);
             LevelData.Player.ReadPlayerInput();
             UpdateEnemies();
+            UpdateWalls();
             TurnCounter++;
         }
         UserInterface.GameOver();
@@ -23,6 +25,16 @@
         {
             (element as Enemy)?.Update();
             (element as Item)?.Update();
+        }
+    }
+
+    private static void UpdateWalls()
+    {
+        IEnumerable<Wall> walls = LevelData.Elements.OfType<Wall>();
+
+        foreach (Wall wall in walls)
+        {
+            wall.CheckIfPlayerInRange();
         }
     }
 }

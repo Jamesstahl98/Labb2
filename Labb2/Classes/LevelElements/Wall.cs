@@ -13,4 +13,17 @@
             Console.Write(Character);
         }
     }
+
+    public void CheckIfPlayerInRange()
+    {
+        if(IsPlayerNearby())
+        {
+            IsDiscovered = true;
+            Draw();
+        }
+        else
+        {
+            OutOfRange();
+        }
+    }
 }
