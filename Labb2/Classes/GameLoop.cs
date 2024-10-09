@@ -6,6 +6,7 @@
     {
         Console.CursorVisible = false;
         LevelData.Load("Level1.txt");
+        LevelData.Player.Name = UserInterface.GetPlayerName();
         UpdateWalls();
 
         while(LevelData.Player.HP > 0)

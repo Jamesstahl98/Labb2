@@ -1,10 +1,26 @@
 ﻿using System.Diagnostics;
+using System.Text.RegularExpressions;
 using System.Xml.Linq;
 using static System.Net.Mime.MediaTypeNames;
 
 public static class UserInterface
 {
     private static readonly List<string> combatLogEntries = new List<string>();
+
+    public static string GetPlayerName()
+    {
+        Console.SetCursorPosition(0, 0);
+        Console.Write("Please enter your name: ");
+        string name = Console.ReadLine();
+
+        ClearLog();
+
+        if(string.IsNullOrWhiteSpace(name))
+        {
+            return "Player";
+        }
+        return name;
+    }
 
     public static void PrintPlayerHPAndTurn(int health, int turn)
     {
