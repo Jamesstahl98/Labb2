@@ -21,29 +21,43 @@ public class Snake : Enemy
 
         (int posXDistance, int posYDistance) = GetXAndYDistanceToElement(LevelData.Player.Position);
 
-        var newPos = new Position(Position.X, Position.Y);
+        Position newPos = GetNewPosition(posXDistance, posYDistance);
 
-        if ((posXDistance * posXDistance) + (posYDistance * posYDistance) < 9)
-        {
+        Move(newPos);
 
-            if (posXDistance>posYDistance)
-            {
-                newPos.X += Math.Sign(Position.X - LevelData.Player.Position.X);
-            }
-            else
-            {
-                newPos.Y += Math.Sign(Position.Y - LevelData.Player.Position.Y);
-            }
-        }
-        if (IsFreeSpace(newPos))
-        {
-            Console.SetCursorPosition(Position.X, Position.Y);
-            Console.Write(" ");
-            Position = newPos;
-        }
         if (IsPlayerNearby())
         {
             Draw();
+        }
+    }
+
+    private Position GetNewPosition(int posXDistance, int posYDistance)
+    {
+        if ((posXDistance * posXDistance) + (posYDistance * posYDistance) >= 9)
+        {
+            return Position;
+        }
+        
+        var newPos = new Position(Position.X, Position.Y);
+
+        if (posXDistance > posYDistance)
+        {
+            newPos.X += Math.Sign(Position.X - LevelData.Player.Position.X);
+        }
+        else
+        {
+            newPos.Y += Math.Sign(Position.Y - LevelData.Player.Position.Y);
+        }
+        return newPos;
+    }
+
+    private void Move(Position position)
+    {
+        if (IsFreeSpace(position))
+        {
+            Console.SetCursorPosition(Position.X, Position.Y);
+            Console.Write(" ");
+            Position = position;
         }
     }
 }

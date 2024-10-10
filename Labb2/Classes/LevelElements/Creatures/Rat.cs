@@ -4,8 +4,8 @@ using System.Diagnostics;
 public class Rat : Enemy
 {
     static private Random rand = new Random();
-    private enum dir { left, up, right, down};
-    Array dirValues = Enum.GetValues(typeof(dir));
+    private enum directions { left, up, right, down};
+    Array dirValues = Enum.GetValues(typeof(directions));
 
     public Rat(Position pos, char c, ConsoleColor color) 
         : base(pos, c, color)
@@ -24,34 +24,44 @@ public class Rat : Enemy
             return;
         }
 
-        var newPos = new Position(Position.X, Position.Y);
+        Position newPos = GetRandomPosition(new Position(Position.X, Position.Y));
 
-        dir randomDir = (dir)dirValues.GetValue(rand.Next(dirValues.Length));
-        switch(randomDir)
+        Move(newPos);
+
+        if (IsPlayerNearby())
         {
-            case dir.left:
-                newPos.X -= 1;
+            Draw();
+        }
+    }
+
+    public Position GetRandomPosition(Position position)
+    {
+        directions randomDirection = (directions)dirValues.GetValue(rand.Next(dirValues.Length));
+        switch (randomDirection)
+        {
+            case directions.left:
+                position.X -= 1;
                 break;
-            case dir.up:
-                newPos.Y -= 1;
+            case directions.up:
+                position.Y -= 1;
                 break;
-            case dir.right:
-                newPos.X += 1;
+            case directions.right:
+                position.X += 1;
                 break;
-            case dir.down:
-                newPos.Y += 1;
+            case directions.down:
+                position.Y += 1;
                 break;
         }
+        return position;
+    }
 
-        if (IsFreeSpace(newPos))
+    private void Move(Position position)
+    {
+        if (IsFreeSpace(position))
         {
             Console.SetCursorPosition(Position.X, Position.Y);
             Console.Write(" ");
-            Position = newPos;
-            if(IsPlayerNearby())
-            {
-                Draw();
-            }
+            Position = position;
         }
     }
 }
