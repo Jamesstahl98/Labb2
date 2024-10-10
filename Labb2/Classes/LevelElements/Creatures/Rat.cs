@@ -5,7 +5,6 @@ public class Rat : Enemy
 {
     static private Random rand = new Random();
     private enum directions { left, up, right, down};
-    Array dirValues = Enum.GetValues(typeof(directions));
 
     public Rat(Position pos, char c, ConsoleColor color) 
         : base(pos, c, color)
@@ -31,7 +30,7 @@ public class Rat : Enemy
             Move(newPos);
         }
 
-        if (IsPlayerNearby())
+        if (IsPlayerNearby() && HP > 0)
         {
             Draw();
         }
@@ -39,6 +38,7 @@ public class Rat : Enemy
 
     public Position GetRandomPosition(Position position)
     {
+        Array dirValues = Enum.GetValues(typeof(directions));
         directions randomDirection = (directions)dirValues.GetValue(rand.Next(dirValues.Length));
         switch (randomDirection)
         {
