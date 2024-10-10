@@ -42,9 +42,11 @@ public class Player : Creature
     {
         UserInterface.ClearLog();
 
-        if (IsFreeSpace(newPos))
+        var collider = GetLevelElementCollision(newPos);
+
+        if (GetLevelElementCollision(newPos) is null or IInteractable)
         {
-            Move(newPos);
+            Move(newPos, collider);
         }
 
         Draw();

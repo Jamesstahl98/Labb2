@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Xml.Linq;
 
 public abstract class Creature : LevelElement
@@ -47,7 +48,7 @@ public abstract class Creature : LevelElement
         }
     }
 
-    protected bool IsFreeSpace(Position pos)
+    protected LevelElement? GetLevelElementCollision(Position pos)
     {
         for (int i = 0; i < LevelData.Elements.Count; i++)
         {
@@ -57,17 +58,24 @@ public abstract class Creature : LevelElement
             }
             if (LevelData.Elements[i].Position.X == pos.X && LevelData.Elements[i].Position.Y == pos.Y)
             {
-                LevelData.Elements[i].ElementContact(this);
-                return false;
+                return LevelData.Elements[i];
             }
         }
-        return true;
+        return null;
     }
 
-    public void Move(Position newPosition)
+    public void Move(Position newPosition, LevelElement? collider)
     {
-        Console.SetCursorPosition(Position.X, Position.Y);
-        Console.Write(" ");
-        Position = newPosition;
+        var element = GetLevelElementCollision(newPosition);
+        if (collider != null)
+        {
+            element.ElementContact(this);
+        }
+        else
+        {
+            Console.SetCursorPosition(Position.X, Position.Y);
+            Console.Write(" ");
+            Position = newPosition;
+        }
     }
 }

@@ -3,8 +3,8 @@ using System.Diagnostics;
 
 public class Rat : Enemy
 {
-    static private Random rand = new Random();
-    private enum directions { left, up, right, down};
+    private static readonly Random rand = new Random();
+    private enum Directions { left, up, right, down};
 
     public Rat(Position pos, char c, ConsoleColor color) 
         : base(pos, c, color)
@@ -25,9 +25,10 @@ public class Rat : Enemy
 
         Position newPos = GetRandomPosition(new Position(Position.X, Position.Y));
 
-        if (IsFreeSpace(newPos))
+        var collider = GetLevelElementCollision(newPos);
+        if (collider is null or Player)
         {
-            Move(newPos);
+            Move(newPos, collider);
         }
 
         if (IsPlayerNearby() && HP > 0)
@@ -38,20 +39,20 @@ public class Rat : Enemy
 
     public Position GetRandomPosition(Position position)
     {
-        Array dirValues = Enum.GetValues(typeof(directions));
-        directions randomDirection = (directions)dirValues.GetValue(rand.Next(dirValues.Length));
+        Array dirValues = Enum.GetValues(typeof(Directions));
+        Directions randomDirection = (Directions)dirValues.GetValue(rand.Next(dirValues.Length));
         switch (randomDirection)
         {
-            case directions.left:
+            case Directions.left:
                 position.X -= 1;
                 break;
-            case directions.up:
+            case Directions.up:
                 position.Y -= 1;
                 break;
-            case directions.right:
+            case Directions.right:
                 position.X += 1;
                 break;
-            case directions.down:
+            case Directions.down:
                 position.Y += 1;
                 break;
         }

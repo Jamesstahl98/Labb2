@@ -18,7 +18,13 @@
 
         (int posXDistance, int posYDistance) = GetXAndYDistanceToElement(LevelData.Player.Position);
 
-        Move(posXDistance, posYDistance);
+        Position newPos = GetNewPosition(posXDistance, posYDistance);
+
+        var collider = GetLevelElementCollision(newPos);
+        if (collider is null or Player)
+        {
+            Move(newPos, collider);
+        }
 
         if (IsPlayerNearby() && HP > 0)
         {
@@ -26,40 +32,39 @@
         }
     }
 
-    public void Move(int posXDistance, int posYDistance)
+    public Position GetNewPosition(int posXDistance, int posYDistance)
     {
         if((posXDistance * posXDistance) + (posYDistance * posYDistance) >= 25)
         {
-            return;
+            return Position;
         }
-
-        Console.SetCursorPosition(Position.X, Position.Y);
-        Console.Write(" ");
 
         int xDirectionToPlayer = Math.Sign(LevelData.Player.Position.X - Position.X);
         int yDirectionToPlayer = Math.Sign(LevelData.Player.Position.Y - Position.Y);
 
         if (posXDistance > posYDistance)
         {
-            if (IsFreeSpace(new Position(Position.X + xDirectionToPlayer, Position.Y)))
+            if (GetLevelElementCollision(new Position(Position.X + xDirectionToPlayer, Position.Y)) is null or Player)
             {
-                Position = new Position(Position.X + xDirectionToPlayer, Position.Y);
+                return new Position(Position.X + xDirectionToPlayer, Position.Y);
             }
-            else if (IsFreeSpace(new Position(Position.X, Position.Y + yDirectionToPlayer)))
+
+            else if (GetLevelElementCollision(new Position(Position.X, Position.Y + yDirectionToPlayer)) is null or Player)
             {
-                Position = new Position(Position.X, Position.Y + yDirectionToPlayer);
+                return new Position(Position.X, Position.Y + yDirectionToPlayer);
             }
         }
         else
         {
-            if (IsFreeSpace(new Position(Position.X, Position.Y + yDirectionToPlayer)))
+            if (GetLevelElementCollision(new Position(Position.X, Position.Y + yDirectionToPlayer)) is null or Player)
             {
-                Position = new Position(Position.X, Position.Y + yDirectionToPlayer);
+                return new Position(Position.X, Position.Y + yDirectionToPlayer);
             }
-            else if (IsFreeSpace(new Position(Position.X + xDirectionToPlayer, Position.Y)))
+            else if (GetLevelElementCollision(new Position(Position.X + xDirectionToPlayer, Position.Y)) is null or Player)
             {
-                Position = new Position(Position.X + xDirectionToPlayer, Position.Y);
+                return new Position(Position.X + xDirectionToPlayer, Position.Y);
             }
         }
+        return Position;
     }
 }

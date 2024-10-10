@@ -18,11 +18,11 @@ public abstract class DiceModifierItem : Item
         {
             if(DiceType == "defence")
             {
-                (element as Player).DefenceDice.Modifier += Amount;
+                ((Player)element).DefenceDice.Modifier += Amount;
             }
             else
             {
-                (element as Player).AttackDice.Modifier += Amount;
+                ((Player)element).AttackDice.Modifier += Amount;
             }
 
             UserInterface.PrintItemPickup(this);

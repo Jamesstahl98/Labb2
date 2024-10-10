@@ -23,9 +23,10 @@ public class Snake : Enemy
 
         Position newPos = GetNewPosition(posXDistance, posYDistance);
 
-        if(IsFreeSpace(newPos))
+        var collider = GetLevelElementCollision(newPos);
+        if (collider is null or Player)
         {
-            Move(newPos);
+            Move(newPos, collider);
         }
 
         if (IsPlayerNearby())
