@@ -23,7 +23,10 @@ public class Snake : Enemy
 
         Position newPos = GetNewPosition(posXDistance, posYDistance);
 
-        Move(newPos);
+        if(IsFreeSpace(newPos))
+        {
+            Move(newPos);
+        }
 
         if (IsPlayerNearby())
         {
@@ -49,15 +52,5 @@ public class Snake : Enemy
             newPos.Y += Math.Sign(Position.Y - LevelData.Player.Position.Y);
         }
         return newPos;
-    }
-
-    private void Move(Position position)
-    {
-        if (IsFreeSpace(position))
-        {
-            Console.SetCursorPosition(Position.X, Position.Y);
-            Console.Write(" ");
-            Position = position;
-        }
     }
 }

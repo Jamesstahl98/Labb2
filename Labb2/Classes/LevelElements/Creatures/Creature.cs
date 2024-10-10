@@ -63,4 +63,11 @@ public abstract class Creature : LevelElement
         }
         return true;
     }
+
+    public void Move(Position newPosition)
+    {
+        Console.SetCursorPosition(Position.X, Position.Y);
+        Console.Write(" ");
+        Position = newPosition;
+    }
 }

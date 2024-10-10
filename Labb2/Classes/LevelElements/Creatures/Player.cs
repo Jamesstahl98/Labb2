@@ -40,14 +40,11 @@ public class Player : Creature
 
     public void Update(Position newPos)
     {
-        Console.SetCursorPosition(Position.X, Position.Y);
-        Console.Write(" ");
-
         UserInterface.ClearLog();
 
         if (IsFreeSpace(newPos))
         {
-            Position = newPos;
+            Move(newPos);
         }
 
         Draw();

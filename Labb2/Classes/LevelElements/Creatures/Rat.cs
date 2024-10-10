@@ -26,7 +26,10 @@ public class Rat : Enemy
 
         Position newPos = GetRandomPosition(new Position(Position.X, Position.Y));
 
-        Move(newPos);
+        if (IsFreeSpace(newPos))
+        {
+            Move(newPos);
+        }
 
         if (IsPlayerNearby())
         {
@@ -53,15 +56,5 @@ public class Rat : Enemy
                 break;
         }
         return position;
-    }
-
-    private void Move(Position position)
-    {
-        if (IsFreeSpace(position))
-        {
-            Console.SetCursorPosition(Position.X, Position.Y);
-            Console.Write(" ");
-            Position = position;
-        }
     }
 }
