@@ -42,12 +42,7 @@ public class Player : Creature
     {
         UserInterface.ClearLog();
 
-        var collider = GetLevelElementCollision(newPos);
-
-        if (GetLevelElementCollision(newPos) is null or IInteractable)
-        {
-            Move(newPos, collider);
-        }
+        Move(newPos);
 
         Draw();
     }

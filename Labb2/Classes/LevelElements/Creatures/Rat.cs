@@ -23,13 +23,9 @@ public class Rat : Enemy
             return;
         }
 
-        Position newPos = GetRandomPosition(new Position(Position.X, Position.Y));
+        Position newPos = GetNewPosition(new Position(Position.X, Position.Y));
 
-        var collider = GetLevelElementCollision(newPos);
-        if (collider is null or Player)
-        {
-            Move(newPos, collider);
-        }
+        Move(newPos);
 
         if (IsPlayerNearby() && HP > 0)
         {
@@ -37,7 +33,7 @@ public class Rat : Enemy
         }
     }
 
-    public Position GetRandomPosition(Position position)
+    public Position GetNewPosition(Position position)
     {
         Array dirValues = Enum.GetValues(typeof(Directions));
         Directions randomDirection = (Directions)dirValues.GetValue(rand.Next(dirValues.Length));

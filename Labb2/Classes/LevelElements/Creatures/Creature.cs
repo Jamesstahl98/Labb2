@@ -64,18 +64,22 @@ public abstract class Creature : LevelElement
         return null;
     }
 
-    public void Move(Position newPosition, LevelElement? collider)
+    public void Move(Position newPosition)
     {
-        var element = GetLevelElementCollision(newPosition);
-        if (collider != null)
-        {
-            element.ElementContact(this);
-        }
-        else
+        var collision = GetLevelElementCollision(newPosition);
+        if (collision is null)
         {
             Console.SetCursorPosition(Position.X, Position.Y);
             Console.Write(" ");
             Position = newPosition;
+        }
+        else
+        {
+            if ((this is Player && collision is IInteractable)
+                || (this is Enemy && collision is Player))
+            {
+                collision.ElementContact(this);
+            }
         }
     }
 }

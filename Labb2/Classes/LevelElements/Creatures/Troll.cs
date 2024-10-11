@@ -20,11 +20,7 @@
 
         Position newPos = GetNewPosition(posXDistance, posYDistance);
 
-        var collider = GetLevelElementCollision(newPos);
-        if (collider is null or Player)
-        {
-            Move(newPos, collider);
-        }
+        Move(newPos);
 
         if (IsPlayerNearby() && HP > 0)
         {
