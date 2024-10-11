@@ -14,31 +14,30 @@ public abstract class DiceModifierItem : Item
 
     public override void ElementContact(Creature element)
     {
-        if (element is Player)
+        if(DiceType == "defence")
         {
-            if(DiceType == "defence")
-            {
-                ((Player)element).DefenceDice.Modifier += Amount;
-            }
-            else
-            {
-                ((Player)element).AttackDice.Modifier += Amount;
-            }
-
-            UserInterface.PrintItemPickup(this);
-
-            RemoveElement();
+            element.DefenceDice.Modifier += Amount;
         }
+        else
+        {
+            element.AttackDice.Modifier += Amount;
+        }
+
+        UserInterface.PrintItemPickup(this);
+
+        RemoveElement();
     }
 
     public override void Update()
     {
-        Console.SetCursorPosition(Position.X, Position.Y);
-        Console.Write(" ");
-
         if (IsPlayerNearby())
         {
             Draw();
+        }
+        else
+        {
+            Console.SetCursorPosition(Position.X, Position.Y);
+            Console.Write(" ");
         }
     }
 
