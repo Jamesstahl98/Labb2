@@ -10,6 +10,7 @@ public static class UserInterface
     public static string GetPlayerName()
     {
         Console.SetCursorPosition(0, 0);
+        Console.ForegroundColor = ConsoleColor.Gray;
         Console.Write("Please enter your name: ");
         string name = Console.ReadLine();
 
