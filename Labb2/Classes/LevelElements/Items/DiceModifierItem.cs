@@ -9,7 +9,9 @@ public abstract class DiceModifierItem : Item
 
     public DiceModifierItem(Position pos, char c, ConsoleColor color) : base(pos, c, color)
     {
-
+        Name = "default name";
+        DiceName = "default dice name";
+        DiceType = "default type";
     }
 
     public override void ElementContact(Creature element)

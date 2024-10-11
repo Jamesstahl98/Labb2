@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
-
-public abstract class Enemy : Creature, IInteractable
+[Interactable]
+public abstract class Enemy : Creature
 {
     public bool WasAttackedThisRound { get; set; }
     public bool RandomMovement { get; set; }

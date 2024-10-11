@@ -1,4 +1,6 @@
 ﻿using System.Diagnostics;
+using System.Reflection;
+using System.Reflection.Metadata;
 using System.Runtime.InteropServices;
 using System.Xml.Linq;
 
@@ -9,7 +11,12 @@ public abstract class Creature : LevelElement
     public Dice AttackDice { get; set; }
     public Dice DefenceDice { get; set; }
 
-    public Creature(Position pos, char c, ConsoleColor color) : base(pos, c, color) { }
+    public Creature(Position pos, char c, ConsoleColor color) : base(pos, c, color)
+    {
+        Name = "Creature";
+        AttackDice = new Dice(1, 1, 1);
+        DefenceDice = new Dice(1, 1, 1);
+    }
 
     public override void ElementContact(Creature element)
     {
@@ -75,7 +82,8 @@ public abstract class Creature : LevelElement
         }
         else
         {
-            if ((this is Player && collision is IInteractable)
+            bool hasInteractibleAttribute = collision.GetType().IsDefined(typeof(InteractableAttribute), true);
+            if ((this is Player && hasInteractibleAttribute)
                 || (this is Enemy && collision is Player))
             {
                 collision.ElementContact(this);
